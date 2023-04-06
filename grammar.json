@@ -1,8 +1,8 @@
 [
  {
   "name": "crises",
-  "lexer": "https://github.com/mikesmirlis/antlr4-crises/blob/main/CRISESLexer.g4",
-  "parser": "https://github.com/mikesmirlis/antlr4-crises/blob/main/CRISESParser.g4",
+  "lexer": "https://raw.githubusercontent.com/mikesmirlis/antlr4-crises/main/CRISESLexer.g4",
+  "parser": "https://raw.githubusercontent.com/mikesmirlis/antlr4-crises/main/CRISESParser.g4",
   "start": "root",
   "example": [
    "c1.crises"
