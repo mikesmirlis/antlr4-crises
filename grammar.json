@@ -5,7 +5,8 @@
   "parser": "https://raw.githubusercontent.com/mikesmirlis/antlr4-crises/main/CRISESParser.g4",
   "start": "root",
   "example": [
-   "c1.crises"
+   "c1.crises",
+   "c2.crises"
   ]
  }
  ]
