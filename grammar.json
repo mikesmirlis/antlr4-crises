@@ -1,0 +1,11 @@
+[
+ {
+  "name": "crises",
+  "lexer": "https://github.com/mikesmirlis/antlr4-crises/blob/main/CRISESLexer.g4",
+  "parser": "https://github.com/mikesmirlis/antlr4-crises/blob/main/CRISESParser.g4",
+  "start": "root",
+  "example": [
+   ""
+  ]
+ }
+ ]
