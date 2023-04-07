@@ -977,9 +977,25 @@ assessment_type:
 	| INCIDENT_RESPONSE
 	| ANY;
 reserved_join_relations:
-	| INVOLVES
+    STORES
+    | CONTAINS
+    | INCLUDES
+    | COMMUNICATES
+    | CONTROLS
+    | CONTROLLED_BY
+    | PROCESSES
+    | PROCESSED_BY
+    | DEPLOYS
+    | DEPLOYED_BY
+    | SUPPORTS
+    | SUPPORTED_BY
+    | TRANSMITS
+    | INVOLVES
 	| PRODUCES
+	| PRODUCED_BY
 	| PROTECTS
+	| PROTECTED_BY
+	| ADDRESSES
 	| ADDRESSED_BY;
 table_columns:
 	| NORMALISED
