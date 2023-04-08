@@ -1,0 +1,8 @@
+FETCH y:Assessment_Model_Execution, x:Asset, ar3:Monitoring_Assessment_Result
+SUCH THAT (y.INVOLVES=x AND y.PRODUCES=ar3)
+FILTER(x.ASSET_TYPE=DATA, ar3.variable->>'probability'>0.5)
+GENERATE ASSESSMENT_RESULT nar:ASSESSMENT_RESULT 
+    ASSET nar.asset IN (tr=TRANSITIVE_CLOSURE(x,ALL))
+    SECURITY_PROPERTY (nar.SECURITY_PROPERTY_ID = ar3.SECURITY_PROPERTY_ID)
+    LIKELIHOOD (nar.LIKELIHOOD=ar3.LIKELIHOOD)
+    VALUE (nar.VALUE= MUL(SUM(tr.value), ar3.variable->>'probability'))
