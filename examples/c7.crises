@@ -1,0 +1,8 @@
+FETCH y1:Assessment_Model_Execution, z:Asset, ar1:Monitoring_Assessment_Result
+SUCH THAT (y1.INVOLVES=z AND y1.PRODUCES=ar1)
+FILTER (z.ASSET_TYPE=DATA, ar1.timestamp IN (CURRENT_TIMESTAMP - 730,CURRENT_TIMESTAMP)) 
+ GENERATE ASSESSMENT_RESULT nar:assessment_result  
+ ASSET nar.asset IN (z) 
+ SECURITY_PROPERTY (nar.SECURITY_PROPERTY_ID = ar1.SECURITY_PROPERTY_ID) 
+ LIKELIHOOD (nar.likelihood = ar1.likelihood)
+ VALUE (nar.value = FORMULA(ar1.variable->>downtime * z.value))
