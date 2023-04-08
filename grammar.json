@@ -6,7 +6,14 @@
   "start": "root",
   "example": [
    "c1.crises",
-   "c2.crises"
+   "c2.crises",
+   "c3.crises",
+   "c4.crises",
+   "c5.crises",
+   "c6.crises",
+   "c7.crises",
+   "c8.crises",
+   "c9.crises"
   ]
  }
  ]
