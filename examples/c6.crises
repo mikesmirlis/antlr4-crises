@@ -1,0 +1,12 @@
+FETCH y1:Assessment_Model_Execution, y2:Assessment_Model_Execution, y3:Assessment_Model_Execution, x:Asset, z:Asset, 
+ar1:Monitoring_Assessment_Result, ar2: CTI_Assessment_Result, ar3:Monitoring_Assessment_Result 
+SUCH THAT (y1.INVOLVES=x AND y2.INVOLVES=x AND y1.PRODUCES=ar1 AND y2.PRODUCES=ar2 AND y3.INVOLVES=z AND y3.PRODUCES=ar3)
+FILTER (x.ASSET_TYPE=DATA AND z.ASSET_TYPE=DATA, ar1.timestamp IN (CURRENT_TIMESTAMP - 730,CURRENT_TIMESTAMP) 
+AND x.CATEGORY=Authentication_Authorization) 
+LIMIT(1)
+GENERATE 
+    ASSESSMENT_RESULT nar:assessment_Result
+    ASSET nar.asset IN (c=MERGE(x,z))
+    SECURITY_PROPERTY (nar.SECURITY_PROPERTY_ID = ar3.SECURITY_PROPERTY_ID)
+    LIKELIHOOD (nar.likelihood = MAX((ARO(ar2)),(COUNT(ar1.likelihood=1)/COUNT(ar1))))
+    VALUE (nar.value = FORMULA(ar3.variable->>downtime*c.value))
