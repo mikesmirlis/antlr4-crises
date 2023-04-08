@@ -8,5 +8,5 @@ GENERATE
     ASSESSMENT_RESULT nar:assessment_Result
     ASSET nar.asset IN (c=MERGE(x,z))
     SECURITY_PROPERTY (nar.SECURITY_PROPERTY_ID = ar3.SECURITY_PROPERTY_ID)
-    LIKELIHOOD (nar.likelihood = MAX((ARO(ar2)),(COUNT(ar1.likelihood=1)/COUNT(ar1))))
+    LIKELIHOOD (nar.likelihood = MAX_BETWEEN(ar3.likelihood,DIV(COUNT(ar1.likelihood=1),COUNT(ar1))))
     VALUE (nar.value = FORMULA(ar3.variable->>downtime*c.value))
