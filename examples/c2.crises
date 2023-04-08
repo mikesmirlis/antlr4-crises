@@ -4,7 +4,12 @@ FILTER (x.ASSET_TYPE=ANY AND y.ASSESSMENT_TYPE=ANY)
 GENERATE  
     ASSESSMENT_RESULT nar:assessment_result 
     ASSET nar.asset IN 
-        (     t = TRANSITIVE_CLOSURE(x,ALL),     CONDITION(         EXCLUDE(w:SECURITY_CONTROL,PROTECTS,tr) 
-        AND         EXCLUDE(w,ADDRESSES,ar.Security_Property)     ) ) 
+        (     
+            t = TRANSITIVE_CLOSURE(x,ALL),     
+                CONDITION(         
+                EXCLUDE(w:SECURITY_CONTROL,PROTECTS,tr) 
+                AND         
+                EXCLUDE(w,ADDRESSES,ar.Security_Property)     
+        ) ) 
     SECURITY_PROPERTY (nar.SECURITY_PROPERTY_ID = ar.SECURITY_PROPERTY_ID) 
     LIKELIHOOD (nar.LIKELIHOOD=PROPAGATE(ar.LIKELIHOOD * 0.6 ^ DISTANCE))
