@@ -1,9 +1,10 @@
-FETCH y1:Assessment_Model_Execution, a1:Asset, dt1:OpenVASResult
-SUCH THAT (y1.INVOLVES=a1 AND y1.PRODUCES=dt1)
-FILTER (a1.ASSET_TYPE=HARDWARE, dt1.confidencevalue>90)
-LIMIT(10)
-GENERATE
-    ASSESSMENT_RESULT nar:assessment_result
-    ASSET nar.asset IN (a1)
-    SECURITY_PROPERTY (nar.SECURITY_PROPERTY_ID = dt1.securityproperty)
-    LIKELIHOOD (nar.likelihood=dt1.likelihood)
+FETCH y:ASSESSMENT_MODEL_EXECUTION, x:Asset, ar:Assessment_Result
+SUCH THAT (y.INVOLVES=x AND y.PRODUCES=ar)
+FILTER (x.ASSET_TYPE=ANY AND y.ASSESSMENT_TYPE=ANY, y.assessment_model_id=1)
+ORDER BY (ar.NORMALISED)
+LIMIT (10)
+GENERATE 
+ASSESSMENT_RESULT nar:assessment_result
+    ASSET nar.asset IN (x)
+    SECURITY_PROPERTY (nar.SECURITY_PROPERTY_ID = ar.SECURITY_PROPERTY_ID)
+    LIKELIHOOD (nar.LIKELIHOOD=ar.LIKELIHOOD)
